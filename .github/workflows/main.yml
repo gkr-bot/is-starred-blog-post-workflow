@@ -26,4 +26,4 @@ jobs:
                   fs.writeFileSync(filename, 'done', { encoding: 'utf-8', });
                 });
               });
-      - run: git add --all && git commit -m "Added usernames" && git push
+      - run: git add starred_users && git commit -m "Added usernames" && git push
