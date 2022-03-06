@@ -11,14 +11,12 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            let count = 0;
             github
               .paginate(github.rest.activity.listStargazersForRepo, {
                 owner: "gautamkrishnar",
                 repo: "blog-post-workflow",
               })
               .then((stars) => {
-                count = count + 1;
-                console.log(count)
+                console.log(stars.length)
               });
               
