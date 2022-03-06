@@ -20,7 +20,7 @@ jobs:
               })
               .then((stars) => {
                 stars.forEach((item) => {
-                  console.log('/starred_users/' + item.login);
+                  console.log(process.cwd() + '/starred_users/' + item.login);
                   fs.writeFileSync(process.cwd() + '/starred_users/' + item.login, 'done');
                 });
               });
