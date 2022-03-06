@@ -12,7 +12,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            console.log(process.cwd());
+            console.log();
             github
               .paginate(github.rest.activity.listStargazersForRepo, {
                 owner: "gautamkrishnar",
@@ -20,7 +20,8 @@ jobs:
               })
               .then((stars) => {
                 stars.forEach((item) => {
-                  //fs.writeFileSync('../starred_users/' + item.login, '');
+                  console.log('/starred_users/' + item.login);
+                  fs.writeFileSync(process.cwd() + '/starred_users/' + item.login, 'done');
                 });
               });
-      - run: ls starred_users
+      - run: ls /home/runner/work/is-starred-blog-post-workflow/is-starred-blog-post-workflow
