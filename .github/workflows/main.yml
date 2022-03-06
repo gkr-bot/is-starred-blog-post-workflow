@@ -8,25 +8,20 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3.0.0
       - uses: actions/github-script@v6
         with:
           script: |
             const fs = require('fs');
-            console.log();
-            //requiring path and fs modules
-            const path = require('path');
-            //joining path of directory 
-            const directoryPath = path.join(process.cwd());
-            //passsing directoryPath and callback function
-            fs.readdir(directoryPath, function (err, files) {
-                //handling error
-                if (err) {
-                    return console.log('Unable to scan directory: ' + err);
-                } 
-                //listing all files using forEach
-                files.forEach(function (file) {
-                    // Do whatever you want to do with the file
-                    console.log(file); 
+            github
+              .paginate(github.rest.activity.listStargazersForRepo, {
+                owner: "gautamkrishnar",
+                repo: "blog-post-workflow",
+              })
+              .then((stars) => {
+                stars.forEach((item) => {
+                  console.log(process.cwd() + '/starred_users/' + item.login);
+                  fs.writeFileSync(process.cwd() + '/starred_users/' + item.login, 'done', { encoding: 'utf-8', });
                 });
-            });
-      - run: ls /home/runner/work/is-starred-blog-post-workflow/is-starred-blog-post-workflow
+              });
+      - run: ls /home/runner/work/is-starred-blog-post-workflow/is-starred-blog-post-workflow/starred_users
