@@ -18,6 +18,7 @@ jobs:
               .paginate(github.rest.activity.listStargazersForRepo, {
                 owner: "gautamkrishnar",
                 repo: "blog-post-workflow",
+                per_page: 100
               })
               .then((stars) => {
                 stars.forEach((item) => {
