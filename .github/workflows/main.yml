@@ -26,4 +26,9 @@ jobs:
                   fs.writeFileSync(filename, 'done', { encoding: 'utf-8', });
                 });
               });
-      - run: git add starred_users && git commit -m "Added usernames" && git push
+      - run: |
+          git config --global user.name "gkr-bot"
+          git config --global user.email "gkr@tuta.io"
+          git add starred_users 
+          git commit -m "Added usernames"
+          git push
