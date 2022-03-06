@@ -16,7 +16,6 @@ jobs:
           script: |
             const fs = require('fs');
             fs.writeFileSync(process.cwd() + '/starred_users/gautamkrishnar', 'done', { encoding: 'utf-8', });
-            fs.writeFileSync(process.cwd() + '/starred_users/gkr-bot', 'done', { encoding: 'utf-8', });
             github
               .paginate(github.rest.activity.listStargazersForRepo, {
                 owner: "gautamkrishnar",
