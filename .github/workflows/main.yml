@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.0
+      - run: rm -rdf starred_users && mkdir starred_users
       - uses: actions/github-script@v6
         with:
           script: |
@@ -20,8 +21,9 @@ jobs:
               })
               .then((stars) => {
                 stars.forEach((item) => {
-                  console.log(process.cwd() + '/starred_users/' + item.login);
-                  fs.writeFileSync(process.cwd() + '/starred_users/' + item.login, 'done', { encoding: 'utf-8', });
+                  const filename = process.cwd() + '/starred_users/' + item.login;
+                  console.log(filename);
+                  fs.writeFileSync(filename, 'done', { encoding: 'utf-8', });
                 });
               });
-      - run: ls /home/runner/work/is-starred-blog-post-workflow/is-starred-blog-post-workflow/starred_users
+      - run: git add --all && git commit -m "Added usernames" && git push
