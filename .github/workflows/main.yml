@@ -11,12 +11,15 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
+            import fs
             github
               .paginate(github.rest.activity.listStargazersForRepo, {
                 owner: "gautamkrishnar",
                 repo: "blog-post-workflow",
               })
               .then((stars) => {
-                console.log(stars.length)
+                stars.forEach((item) => {
+                  fs.writeFileSync('starred_users/' + item.login, '');
+                });
               });
-              
+      - run: ls starred_users
