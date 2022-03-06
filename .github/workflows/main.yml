@@ -11,7 +11,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            import fs
+            const fs = require('fs');
             github
               .paginate(github.rest.activity.listStargazersForRepo, {
                 owner: "gautamkrishnar",
