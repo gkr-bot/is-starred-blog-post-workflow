@@ -33,4 +33,5 @@ jobs:
           git config --global user.email "gkr@tuta.io"
           git add starred_users 
           git commit -m "Added usernames"
-          git push
+          git push || true
+      - uses: gautamkrishnar/keepalive-workflow@master
