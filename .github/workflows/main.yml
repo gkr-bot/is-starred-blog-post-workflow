@@ -12,6 +12,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            console.log(process.cwd());
             github
               .paginate(github.rest.activity.listStargazersForRepo, {
                 owner: "gautamkrishnar",
@@ -19,7 +20,7 @@ jobs:
               })
               .then((stars) => {
                 stars.forEach((item) => {
-                  fs.writeFileSync('../starred_users/' + item.login, '');
+                  //fs.writeFileSync('../starred_users/' + item.login, '');
                 });
               });
       - run: ls starred_users
