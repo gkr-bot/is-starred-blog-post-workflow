@@ -11,8 +11,8 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            octokit
-              .paginate(octokit.rest.activity.listStargazersForRepo, {
+            github
+              .paginate(github.rest.activity.listStargazersForRepo, {
                 owner: "gautamkrishnar",
                 repo: "blog-post-workflow",
               })
