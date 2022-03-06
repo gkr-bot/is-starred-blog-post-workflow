@@ -12,6 +12,7 @@ jobs:
       - run: rm -rdf starred_users && mkdir starred_users
       - uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.TOKEN_PAT }}
           script: |
             const fs = require('fs');
             github
