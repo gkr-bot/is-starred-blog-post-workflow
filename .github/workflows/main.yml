@@ -33,7 +33,7 @@ jobs:
       - run: |
           git config --global user.name "gkr-bot"
           git config --global user.email "gkr@tuta.io"
-          git add starred_users 
-          git commit -m "Added usernames"
+          git add starred_users || true
+          git commit -m "Added usernames" || true
           git push || true
       - uses: gautamkrishnar/keepalive-workflow@master
