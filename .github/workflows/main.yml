@@ -35,4 +35,3 @@ jobs:
           git add starred_users || true
           git commit -m "Added usernames" || true
           git push || true
-      - uses: gautamkrishnar/keepalive-workflow@master
